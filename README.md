@@ -1,7 +1,7 @@
 # ASPNETMVC_FILTER
 This is sample to implement basic customization of filters (Action_Filter) in MVC. ( C# , ASP.Net MVC)
 
-![alt filter](https://github.com/vijay113/ASPNETMVC_FILTER/blob/master/Images/FilterTypes.jpg)
+![alt filter](https://github.com/vijay113/ASPNETMVC_FILTER/blob/master/Images/FilterTypes.JPG)
 
 This Sample Show the working flow of a customized action filter in MVC.
 Action filter can apply in two ways:-
