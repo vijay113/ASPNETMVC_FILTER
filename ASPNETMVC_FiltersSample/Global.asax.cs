@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ASPNETMVC_FiltersSample.App_Start;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,6 +14,10 @@ namespace ASPNETMVC_FiltersSample
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+
+
+            // To add customized filter on global level
+            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
         }
     }
 }

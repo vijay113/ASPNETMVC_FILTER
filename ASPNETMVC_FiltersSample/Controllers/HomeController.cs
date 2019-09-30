@@ -7,13 +7,27 @@ using System.Web.Mvc;
 
 namespace ASPNETMVC_FiltersSample.Controllers
 {
-    //[CustomLogFilter]      // remove comment to use this custom filter.
-    [CustomLogActionFilter]
+
+    /// <summary>
+    /// Customized Filters can Apply on 3 levels:-
+    /// 1) Action level
+    /// 2) Controller level 
+    /// 3) Global level  --> check global.cs file to know about implementation in global.cs
+    ///
+    /// if all level contains same type of filters like- action filters.
+    /// then , they will execute in Recursion order of Global(executing()) -> Controller(executing()) -> Action(executing() -> Executed()) -> Controller(Executed()) -> Global(Executed()).
+    /// </summary>
+
+
+    //[CustomLogFilter]     (first way of Implementation)
+    //[CustomLogActionFilter] (second way of Implementation)
+    // [CustomizedAuth]   ( Customised Autherization FIlter )
+    //[CustomExceptionFilter]  ( Customised Exceptional Filter)
     public class HomeController : Controller
     {        
 
         [OutputCache(Duration = 15)]
-       // [CustomLogActionFilter]
+        // [CustomLogActionFilter]
         public string Index()
         {
             return "This is ASP.Net MVC Filters Tutorial";          
@@ -25,6 +39,12 @@ namespace ASPNETMVC_FiltersSample.Controllers
         public string GetCurrentTime()
         {
             return DateTime.Now.ToString("T");
+        }
+
+        [CustomExceptionFilter]
+        public string GetValue()
+        {
+            throw new Exception("Error in GetValue.");            
         }
 
     }
