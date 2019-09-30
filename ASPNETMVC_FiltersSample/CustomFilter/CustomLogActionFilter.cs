@@ -8,6 +8,37 @@ using System.Web.Routing;
 
 namespace ASPNETMVC_FiltersSample.CustomFilter
 {
+    /// <summary>
+    /// Two ways to apply Filter
+    /// first way is using IActionFilter
+    /// second way is using ActionFilterAttribute Class
+    /// Both ways are defined in following code
+    /// </summary>
+    public class CustomLogFilter : FilterAttribute, IActionFilter
+    {
+        public void OnActionExecuted(ActionExecutedContext filterContext)
+        {
+            Log("OnActionExecuted in CustomLogFilter", filterContext.RouteData);           
+        }
+
+        public void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            Log("OnActionExecuting in CustomLogFilter", filterContext.RouteData);
+        }
+
+
+        private void Log(string methodName, RouteData routeData)
+        {
+            var controllerName = routeData.Values["controller"];
+            var actionName = routeData.Values["action"];
+
+            var message = String.Format(
+               "{0} controller:{1} action:{2}", methodName, controllerName, actionName);
+
+            Debug.WriteLine(message, "Action Filter Log");
+        }
+    }
+
     public class CustomLogActionFilter: ActionFilterAttribute
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)

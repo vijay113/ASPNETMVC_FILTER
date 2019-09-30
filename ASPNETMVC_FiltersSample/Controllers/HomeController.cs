@@ -7,11 +7,13 @@ using System.Web.Mvc;
 
 namespace ASPNETMVC_FiltersSample.Controllers
 {
+    //[CustomLogFilter]      // remove comment to use this custom filter.
     [CustomLogActionFilter]
     public class HomeController : Controller
     {        
 
         [OutputCache(Duration = 15)]
+       // [CustomLogActionFilter]
         public string Index()
         {
             return "This is ASP.Net MVC Filters Tutorial";          
@@ -19,6 +21,7 @@ namespace ASPNETMVC_FiltersSample.Controllers
 
 
         [OutputCache(Duration = 20)]
+        // [CustomLogActionFilter]
         public string GetCurrentTime()
         {
             return DateTime.Now.ToString("T");
